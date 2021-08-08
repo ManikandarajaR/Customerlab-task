@@ -1,0 +1,21 @@
+.nav 
+{
+     height: 80px;
+     display: flex;
+     height: 75px;
+     align-items: center;
+     width: 100%;
+     background-color: rgb(104, 167, 158);
+}
+ul{
+     list-style: none;
+}
+i{
+     color: white;
+}
+ul li a{
+     margin-left: 20px;
+     font-size: 20px;
+     font-weight: 500;
+     color: white;
+}

@@ -1,0 +1,75 @@
+.form
+{
+     padding: 15px;
+}
+.segment
+{
+     margin-top: 10px;
+     width: 90%;
+     padding: 10px;
+     margin-bottom: 5px;
+}
+.desc
+{
+     height: 40px;
+     display: flex;
+     justify-content:flex-end;
+     align-items: center;
+     margin-right: 15px;
+}
+.fa-minus
+{
+     color: gray;
+     padding: 10px;
+     background-color: azure;
+}
+.fa-circle
+{
+     font-size: 12px;
+}
+.green
+{
+     color: rgb(72, 228, 132);
+}
+.red
+{
+     color: rgb(216, 63, 152);
+}
+.desc p
+{
+     margin: 5px;
+     font-weight: 600;
+     font-size: 12px;
+}
+.form-group
+{
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin: 10px;
+}
+.gray
+{
+     color: gray;
+}
+.inputs
+{
+     font-size: 14px;
+     border: 1px solid black;
+     width: 80%;
+     padding: 8px;
+}
+.center
+{
+     margin-left: 30px;
+     font-size: 13px;;
+}
+.center a
+{
+     color: rgb(39, 218, 107);
+     font-weight: 600;
+}
+.fa-plus
+{
+     color: rgb(72, 228, 132);
+}
