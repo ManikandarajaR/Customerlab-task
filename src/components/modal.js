@@ -2,6 +2,7 @@ import React  from 'react';
 import '../css/modal.css';
 import '../css/form.css';
 import Form from './Form';
+import CustomSelect from './CustomSelect';
 
 function Modal({open,onClose})
 {

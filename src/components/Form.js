@@ -11,14 +11,39 @@ class Form extends React.Component {
                segment: "",
                fname:"",
                lname:"",
-               gender:"",
                age:"",
-               acname:"",
-               city:"",
-               states : ""
+               users : [
+                    {
+                         id:1,
+                        names : "fname",
+                    },
+                    {
+                         id:2,
+                        names : "lname",
+                    },
+                    {
+                         id:3,
+                        names : "age",
+                    }
+
+               ]
            };
 
      }
+
+     handled = (e) =>
+     {
+         var text = e.target.value;
+         console.log(text);
+
+          this.setState(
+               {
+                    segment : text
+               }
+          )
+
+     }
+
 
      HandleChange = (e) =>
      {
@@ -30,31 +55,20 @@ class Form extends React.Component {
      {
 
           let data = {
-               segment_name: this.state.segement,
-
-               schema: [
-               {
-                    first_name: this.state.fname
-               },
-               {
-                    last_name: this.state.lname
-               },
-               {
-                    gender: this.state.gender
-               },
-               {
-                    ager: this.state.age
-               },
-               {
-                    acname: this.state.acname
-               },
-               {
-                    city: this.state.city
-               },
-               {
-                    states:this.state.states
-               }
-               ]
+          
+                    segement_name : this.state.segment,
+                    schema : [
+                         {
+                              first_name : this.state.fname
+                         },
+                         {
+                              last_name : this.state.lname,
+                         },
+                         {
+                              age : this.state.age
+                         }
+     
+                    ]
                }
      
             fetch('https://webhook.site/1f900d3c-4229-4c58-a301-c115806e4f80', {
@@ -73,7 +87,6 @@ class Form extends React.Component {
           const success = () =>{
                     alert('data saved successfully')
           }
-
           return (
                <div>
                     
@@ -85,7 +98,8 @@ class Form extends React.Component {
                                              <label className="label">
                                                   Enter the Name of the Segment
                                              </label>  
-                                             <input value={this.state.value} onChange={this.HandleChange} name="segement" placeholder ="Segment name" className="segment" />
+                                             <input value={this.state.value} onChange={this.handled.bind(this)}
+                                                  name="segement" placeholder ="Segment name" className="segment" />
                                                <p>To save your segement you need to add the schemas to build the query</p>
                                        </div>
                                         
@@ -94,70 +108,40 @@ class Form extends React.Component {
                                                   <p> <i class="fas fa-circle red"></i> - Group Traits</p>
                                    </div>
 
-                                   <div className="dropdowns">
+                                   {
+                                   this.state.users.map((userInfo) => 
+                                        {
+                                             return(
+                                                 <div className="form-group">
+                                                      <i class="fas fa-circle green"></i>
+                                                       <select name={userInfo.names} onChange={this.HandleChange} 
+                                                       className="inputs">
+                                                       <option>Add segment</option>
+                                                       <option value="First Name">First Name</option>
+                                                       <option value="Last Name">Last Name</option>
+                                                       <option value="age">Age</option>
+                                                            
+                                                       </select>
+                                                       <i class="fas fa-minus"></i>
 
-                                                  <div className="form-group">
-                                                       <i class="fas fa-circle green"></i> 
-                                                       <input value={this.state.value} 
-                                                       onChange={this.HandleChange} name="fname"
-                                                       placeholder ="First Name" className="inputs"/>
-                                                       <i class="fas fa-minus"></i>
                                                   </div>
 
-                                                  <div className="form-group">
-                                                       <i class="fas fa-circle green"></i> 
-                                                       <input value={this.state.value} 
-                                                       onChange={this.HandleChange} name="lname"
-                                                       placeholder ="Last Name" className="inputs"/>
-                                                       <i class="fas fa-minus"></i>
-                                                  </div>
+                                             )
+                                        })
+                              }
 
-                                                  <div className="form-group">
-                                                       <i class="fas fa-circle green"></i> 
-                                                       <input value={this.state.value} 
-                                                       onChange={this.HandleChange} name="gender"
-                                                       placeholder ="Gender" className="inputs"/>
-                                                       <i class="fas fa-minus"></i>
-                                                  </div>
-                                                  <div className="form-group">
-                                                       <i class="fas fa-circle green"></i> 
-                                                       <input value={this.state.value}
-                                                        onChange={this.HandleChange} name="age"
-                                                       placeholder ="Age" className="inputs"/>
-                                                       <i class="fas fa-minus"></i>
-                                                  </div>
-                                                  <div className="form-group">
-                                                       <i class="fas fa-circle green"></i> 
-                                                       <input value={this.state.value} onChange={this.HandleChange} name="acname"
-                                                        placeholder ="Account Name" className="inputs"/>
-                                                       <i class="fas fa-minus"></i>
-                                                  </div>
-                                                  <div className="form-group">
-                                                       <i class="fas fa-circle green"></i> 
-                                                       <input value={this.state.value} 
-                                                       onChange={this.HandleChange} name="city"      
-                                                       placeholder ="City" className="inputs"/>
-                                                       <i class="fas fa-minus"></i>
-                                                  </div>
-                                                  <div className="form-group">
-                                                       <i class="fas fa-circle green"></i> 
-                                                       <input value={this.state.value}
-                                                       onChange={this.HandleChange} name="states"
-                                                       placeholder ="State" className="inputs"/>
-                                                       <i class="fas fa-minus"></i>
-                                                  </div>
+                                               
                                                   <div className="form-control center">
                                                             <i class="fas fa-plus"></i>
                                                             <a href="#">Add new schema</a>
                                                   </div>
                                              </div>
-                              </div>
+                     
                                              <div className="footer">
-                                                  <button className="submit" type="submit">Save the segment</button>
+                                                  <button className="submit" type="submit" onClick={success}>Save the segment</button>
                                                   <button  className="close" 
                                                   onClick={closed}>close</button>
-                                               </div>
-                                        
+                                               </div>   
                </form>
 
      
